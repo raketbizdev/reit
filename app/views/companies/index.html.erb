@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Companies</h1>
+
+<%= search_form_for @search do |f| %>
+
+  
+<div class="input-group mb-3 w-50">
+ <%= f.search_field :company_name_cont, placeholder: "Search Reit Name", class: "form-control" %>
+  <div class="input-group-append">
+    <%= f.submit "Search", class: "btn btn-outline-secondary" %>
+
+  </div>
+</div>
+<% end %>
+
+<div class="my-3">
+  <%= link_to 'New Company', new_company_path, class: "btn btn-primary" %> 
+  <h1 class="float-right">Total Company Listed: <span class="text-danger"><%= @companies.size %></span> </h1>
+</div>
+
+<%= form_tag destroy_multiple_companies_path, method: :delete do %>
+<%= submit_tag "Delete selected", class: "btn btn-danger" %>
+
+<table class="table table-hover table-sm table-striped table-bordered">
+  <thead>
+    <tr class="bg-secondary text-white">
+      <th></th>
+      <th><%= sort_link @search, :id, "Id" %></th>
+      <th><%= sort_link @search, :company_name, "Company name" %></th>
+      <th><%= sort_link @search, :website, "Website" %></th>
+      <th><%= sort_link @search, :company_type, "Company type" %></th>
+      <th><%= sort_link @search, :listing_status, "Listing status" %></th>
+      <th><%= sort_link @search, :industry_sector, "Industry sector" %></th>
+      <th><%= sort_link @search, :investment_sector, "Investment sector" %></th>
+      <th><%= sort_link @search, :exchange, "Exchange" %></th>
+      <th width="50"><%= sort_link @search, :ticker, "Ticker" %></th>
+      <th>Twitter</th>
+      <th>Linkedin</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each_with_index do |company, index| %>
+      <tr class="w-100">
+        <td class="font-weight-bold"><%= check_box_tag "companies[]", company.id %></td>
+        
+        <td class="font-weight-bold"> <%= index+1 %></td>
+
+        <td>
+          <% if company.directory_url == "https://www.reitnotes.com/link_not_found" %>
+            <%= company.company_name %>
+          <% else %>
+            <%= link_to company.company_name, company.directory_url %>
+          <% end -%>
+        </td>
+        <td><%= company.website %></td>
+        <td class="col-2"><%= company.company_type %></td>
+        <td><%= company.listing_status %></td>
+        <td><%= company.industry_sector %></td>
+        <td><%= company.investment_sector %></td>
+        <td><%= company.exchange %></td>
+        <td><%= company.ticker %></td>
+        <td><%= company.twitter %></td>
+        <td><%= company.linkedin %></td>
+
+        <td>
+  <div class="btn-group" role="group" aria-label="Basic example">
+  <%= link_to 'View', company, class: "btn btn-outline-info" %>
+  <%= link_to 'Edit', edit_company_path(company), class: "btn btn-outline-secondary" %>
+  <%= link_to 'Delete', company, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-outline-danger"%>
+</div></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+  <%= submit_tag "Delete selected", class: "btn btn-danger" %>
+
+<% end %>
+<br>
+
+<%= link_to 'New Company', new_company_path %>

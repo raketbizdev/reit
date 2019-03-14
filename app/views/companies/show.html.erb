@@ -1,0 +1,75 @@
+<div class="container">
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @company.company_name %>
+</p>
+
+<p>
+  <strong>Directory url:</strong>
+  <%= @company.directory_url %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @company.website %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @company.description %>
+</p>
+
+<p>
+  <strong>Company type:</strong>
+  <%= @company.company_type %>
+</p>
+
+<p>
+  <strong>Listing status:</strong>
+  <%= @company.listing_status %>
+</p>
+
+<p>
+  <strong>Industry sector:</strong>
+  <%= @company.industry_sector %>
+</p>
+
+<p>
+  <strong>Investment sector:</strong>
+  <%= @company.investment_sector %>
+</p>
+
+<p>
+  <strong>Exchange:</strong>
+  <%= @company.exchange %>
+</p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @company.ticker %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @company.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @company.phone %>
+</p>
+<p>
+  <strong>Twitter:</strong>
+  <%= @company.twitter %>
+</p>
+<p>
+  <strong>Linkedin:</strong>
+  <%= @company.linkedin %>
+</p>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
+</div>
